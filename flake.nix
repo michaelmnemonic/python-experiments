@@ -12,6 +12,7 @@
             gitMinimal
             python3
             pyright
+            ruff
           ];
         };
   };
