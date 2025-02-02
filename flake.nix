@@ -11,6 +11,7 @@
           buildInputs = with nixpkgs.legacyPackages.aarch64-linux.pkgs; [
             gitMinimal
             python3
+            pyright
           ];
         };
   };
