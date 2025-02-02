@@ -13,6 +13,7 @@
             python3
             pyright
             ruff
+            python312Packages.ipykernel
           ];
         };
   };
