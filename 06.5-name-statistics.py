@@ -1,14 +1,23 @@
 import matplotlib.pyplot as plt
 
 
+def get_data():
+    with open("data/names.csv", "r") as file:
+        next(file)  # skip first line
+        data = []
+        for line in file:
+            column = line.strip().split(",")
+            data.append
+    return data
+
+
 def get_all_years():
     with open("data/names.csv", "r") as file:
         next(file)  # skip first line
         years = []
         for line in file:
             column = line.strip().split(",")
-            # assume that list of years is acsending
-            if not years or years[-1] != column[2]:
+            if not column[2] in years:
                 years.append(column[2])
         return years
 
