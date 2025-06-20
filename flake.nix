@@ -14,6 +14,25 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
     pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
+    packages = forAllSystems (system: {
+      pyflame = pkgs.${system}.python3Packages.buildPythonPackage rec {
+        pname = "pyflame";
+        version = "0.3.2";
+        pyproject = true;
+
+        src = pkgs.${system}.fetchPypi {
+          inherit pname;
+          inherit version;
+          hash = "sha256-j15RRngb3e84ezMXCyfPxb6Qf64BeVFttWSnI/MOUSE=";
+        };
+
+        nativeBuildInputs = [pkgs.${system}.python3Packages.setuptools];
+
+        dontCheckRuntimeDeps = true;
+        doCheck = false;
+      };
+    });
+
     devShells = forAllSystems (system: {
       default = pkgs.${system}.mkShell {
         buildInputs = with pkgs.${system}; [
@@ -24,8 +43,9 @@
           python3
           pyright
           ruff
-          python312Packages.ipykernel
-          python312Packages.matplotlib
+          python3Packages.ipykernel
+          python3Packages.matplotlib
+          self.packages.${system}.pyflame
 
           # nix
           nil
