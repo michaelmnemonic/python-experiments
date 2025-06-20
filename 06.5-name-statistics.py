@@ -1,3 +1,5 @@
+# This implementation is inefficient, but irrelevant for this exercise
+
 import matplotlib.pyplot as plt
 
 
@@ -29,7 +31,7 @@ def get_count_by_name(name, year):
             column = line.strip().split(",")
             if column[1] == name and column[2] == year:
                 count += int(column[5])
-        return count  # this is really inefficient, but irrelevant for this exercise
+        return count
 
 
 # columns in names.csv are: Id,Name,Year,Gender,State,Count
@@ -42,15 +44,16 @@ def main():
         print(
             "Found "
             + str(countForThisYear)
-            + " kids with name ''"
+            + " kids with name "
             + name
-            + "'' in year "
+            + " in year "
             + year
             + "."
         )
         count.append(countForThisYear)
 
     plt.plot(years, count)
+    plt.tick_params(axis="x", labelrotation=270)
     plt.show()
 
 
