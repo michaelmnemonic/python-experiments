@@ -25,6 +25,7 @@
           pyright
           ruff
           python312Packages.ipykernel
+          python312Packages.matplotlib
 
           # nix
           nil
