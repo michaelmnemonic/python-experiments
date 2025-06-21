@@ -11,16 +11,15 @@ def get_data():
 def count_occurance_of_names(data):
     names = {}
     for line in data:
-        if line[1] not in names:
-            names[line[1]] = int(line[5])
+        if line[1] in names:
+            names[line[1]] += int(line[5])
         else:
-            names[line[1]] = names[line[1]] + int(line[5])
+            names[line[1]] = int(line[5])
     return names
 
 
 def main():
-    data = get_data()
-    names = count_occurance_of_names(data)
+    names = count_occurance_of_names(get_data())
     most_used_name = ""
     max = 0
     for name, count in names.items():
