@@ -40,12 +40,11 @@
           gitMinimal
 
           #python
-          python3
+          python313
           pyright
           ruff
-          python3Packages.ipykernel
-          python3Packages.matplotlib
-          self.packages.${system}.pyflame
+          python313Packages.ipykernel
+          python313Packages.matplotlib
 
           # nix
           nil
