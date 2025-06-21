@@ -28,14 +28,23 @@ def get_count_by_name(data, name, year):
     return count
 
 
+def get_count_by_name_and_state(data, name, year, state):
+    count = 0
+    for line in data:
+        if line[1] == name and line[2] == year and line[4] == state:
+            count += int(line[5])
+    return count
+
+
 # columns in names.csv are: Id,Name,Year,Gender,State,Count
 def main():
-    name = "Anna"
+    name = "Max"
+    state = "CA"
     data = get_data()
     years = get_all_years(data)
     count = []
     for year in years:
-        countForThisYear = get_count_by_name(data, name, year)
+        countForThisYear = get_count_by_name_and_state(data, name, year, state)
         print(
             "Found "
             + str(countForThisYear)
