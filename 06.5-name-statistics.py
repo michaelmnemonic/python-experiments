@@ -43,8 +43,11 @@ def main():
     data = get_data()
     years = get_all_years(data)
     count = []
+    sum = 0
     for year in years:
         countForThisYear = get_count_by_name_and_state(data, name, year, state)
+        if int(year) >= 1950 and int(year) <= 2000:
+            sum += int(countForThisYear)
         print(
             "Found "
             + str(countForThisYear)
@@ -55,6 +58,14 @@ def main():
             + "."
         )
         count.append(countForThisYear)
+
+    print(
+        "In total the name "
+        + name
+        + " was found "
+        + str(sum)
+        + " times between the years 1950 and 2010."
+    )
 
     plt.plot(years, count)
     plt.tick_params(axis="x", labelrotation=270)
