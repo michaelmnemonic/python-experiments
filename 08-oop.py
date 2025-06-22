@@ -53,6 +53,17 @@ def main():
     max = WorkingStudent("Max", "Müller", "DB AG")
     print(max)
 
+    # return type of variable
+    print(type(erik))
+    print(type(max))
+
+    if type(erik) == Student:
+        print("Erik is a student")
+
+    if isinstance(max, Student):
+        # is instance can be used for asking for base class
+        print("Max is a Student")
+
 
 if __name__ == "__main__":
     main()
