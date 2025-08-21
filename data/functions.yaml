@@ -1,0 +1,89 @@
+function:
+  get_user_info:
+    input:
+      - user_id: string
+    output:
+      - name: string
+      - email: string
+      - created_at: datetime
+  # this is a comment of create order
+  create_order:
+    input:
+      - user_id: string
+      - items: list
+      - payment_method: string
+    output:
+      - order_id: string
+      - status: string
+
+  # this is a comment of update profile
+
+  update_profile:
+    input:
+      - user_id: string
+      - profile_data: map
+    output:
+      - success: boolean
+      - updated_at: datetime
+
+  # this is a multi
+  # line comment for send_mail
+  send_email:
+    input:
+      - recipient: string
+      - subject: string
+      - body: string
+    output:
+      - message_id: string
+      - status: string
+
+  process_payment:
+    input:
+      - order_id: string
+      - amount: float
+      - currency: string
+    output:
+      - transaction_id: string
+      - status: string
+
+  generate_report:
+    input:
+      - report_type: string
+      - date_range: map
+    output:
+      - report_id: string
+      - file_url: string
+
+  fetch_inventory:
+    input:
+      - category: string
+      - limit: integer
+    output:
+      - products: list
+      - total_count: integer
+
+  authenticate_user:
+    input:
+      - username: string
+      - password: string
+    output:
+      - token: string
+      - expires_in: integer
+
+  resize_image:
+    input:
+      - image_url: string
+      - width: integer
+      - height: integer
+    output:
+      - resized_url: string
+      - size: map
+
+  translate_text:
+    input:
+      - text: string
+      - source_lang: string
+      - target_lang: string
+    output:
+      - translated_text: string
+      - confidence: float
