@@ -1,5 +1,6 @@
 function:
   get_user_info:
+    owner: mark
     input:
       - user_id: string
     output:
@@ -8,6 +9,7 @@ function:
       - created_at: datetime
   # this is a comment of create order
   create_order:
+    owner: mark
     input:
       - user_id: string
       - items: list
@@ -19,6 +21,7 @@ function:
   # this is a comment of update profile
 
   update_profile:
+    owner: tom
     input:
       - user_id: string
       - profile_data: map
@@ -29,6 +32,7 @@ function:
   # this is a multi
   # line comment for send_mail
   send_email:
+    owner: christine
     input:
       - recipient: string
       - subject: string
@@ -38,6 +42,7 @@ function:
       - status: string
 
   process_payment:
+    owner: mark
     input:
       - order_id: string
       - amount: float
@@ -47,6 +52,7 @@ function:
       - status: string
 
   generate_report:
+    owner: mark
     input:
       - report_type: string
       - date_range: map
@@ -55,6 +61,7 @@ function:
       - file_url: string
 
   fetch_inventory:
+    owner: christine
     input:
       - category: string
       - limit: integer
@@ -63,6 +70,7 @@ function:
       - total_count: integer
 
   authenticate_user:
+    owner: mark
     input:
       - username: string
       - password: string
@@ -71,6 +79,7 @@ function:
       - expires_in: integer
 
   resize_image:
+    owner: mark
     input:
       - image_url: string
       - width: integer
@@ -80,6 +89,7 @@ function:
       - size: map
 
   translate_text:
+    owner: tom
     input:
       - text: string
       - source_lang: string

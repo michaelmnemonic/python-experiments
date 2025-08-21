@@ -9,9 +9,15 @@ def _is_function_start(line):
 def _is_function_comment(line):
     return re.match(r"^ {2}#.*", line)
 
+def _is_function_owner(line):
+  function_owner = re.match(r"^ {4}owner: (.*)", line)
+  if function_owner:
+    return function_owner.group(1)
+
 
 def _split_functions(lines):
     current_function = None
+    function_owner = None
     content = []
     comments = []
 
@@ -25,7 +31,7 @@ def _split_functions(lines):
         if _is_function_start(line):
             if current_function and content:
                 # hand back previous function content
-                yield current_function, content
+                yield current_function, function_owner, content
                 content = []
 
             current_function = _is_function_start(line)
@@ -34,6 +40,9 @@ def _split_functions(lines):
             if comments:
                 content.extend(comments)
                 comments = []
+        
+        if _is_function_owner(line):
+          function_owner = _is_function_owner(line)
 
         # Collect lines for the current function
         if current_function:
@@ -41,20 +50,20 @@ def _split_functions(lines):
 
     # Yield last function
     if current_function and content:
-        yield current_function, content
+        yield current_function, function_owner, content
 
 
 def main() -> None:
     with open("data/functions.yaml", "r") as file:
         lines = file.readlines()
 
-    for function_name, content in _split_functions(lines):
+    for function_name, function_owner, content in _split_functions(lines):
         out_file = f"{function_name}.yaml"
         with open(out_file, "w") as f:
             # include the top-level "function:" header for valid YAML
             f.write("function:\n")
             f.writelines(content)
-        print(f"Created {out_file}")
+        print(f"Created {out_file} owned by {function_owner}.")
 
 
 if __name__ == "__main__":
